@@ -18,107 +18,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-//-------------------------------------------------------------
-// function App() {
-//   const [editing, setEditing] = useState(true);
-//   // const [value, setValue] = useState("This is a sample text.");
-//   const itemInfo = {name: "name", price:"price", category:"category"} ;
-//   var nameFilled = false;
-//   var priceFilled = false;
-//   var categoryFilled = false;
-
-//   const handleSaveName = value => {
-//     if (value) {
-//       console.log(value);
-//       itemInfo.name = value;
-//       nameFilled = true;
-//     }
-//     else {
-//       console.log("empty");
-//       nameFilled = false;
-//     }
-//   };
-//   const handleSavePrice = value => {
-//     if (value) {
-//       console.log(value);
-//       itemInfo.price = value;
-//       priceFilled = true;
-//     }
-//     else {
-//       console.log("empty");
-//       priceFilled = false;
-//     }
-//   };
-//   const handleSaveCategory = value => {
-//     if (value) {
-//       console.log(value);
-//       itemInfo.category= value;
-//       categoryFilled = true;
-//     }
-//     else {
-//       console.log("empty");
-//       categoryFilled = false;
-//     }
-//   };
-//   const addtoList = () => {
-//     if (nameFilled && priceFilled && categoryFilled) {
-//       console.log(itemInfo);
-//       alert('Added Successfully');
-//     }
-//     else {
-//       alert('Not Complete');
-//       console.log("Not Complete");
-//     }
-//   };
-
-
-//   return (
-//     <div className="App">
-//       <h1>Expense Tracker</h1>
-//       <p>
-//         Enter the name of the expense.
-//       </p>
-//       {/* <button onClick={() => setEditing(v => !v)}>Toggle</button> */}
-//       <div style={{ width: "50%" }}>
-//         {/*  Apply your changes below */}
-//         <EdiText
-//           // value={value}
-//           type="text"
-//           onSave={handleSaveName}
-//           editing={editing}
-//         />
-//       </div>
-
-//       <p>
-//         Enter the price of the item purchased.
-//       </p>
-//       {/* <button onClick={() => setEditing(v => !v)}>Toggle</button> */}
-//       <div style={{ width: "50%" }}>
-//         {/*  Apply your changes below */}
-//         <EdiText
-//           // value={value}
-//           type="number"
-//           onSave={handleSavePrice}
-//           editing={editing}
-//         />
-//       </div>
-
-//       <p>
-//         Enter the category of the purchase.
-//       </p>
-//       <div style={{ width: "50%" }}>
-//         {/*  Apply your changes below */}
-//         <EdiText
-//           // value={value}
-//           type="text"
-//           onSave={handleSaveCategory}
-//           editing={editing}
-//         />
-//       </div>
-//             <button onClick={() => addtoList()}>Submit</button>
-//     </div>
-//   );
-// }
 
 class Tracker extends React.Component {
   constructor(props) {
@@ -156,10 +55,9 @@ class Tracker extends React.Component {
         tempList = this.state.list.slice(0, this.state.length - 1);
       }
       else {
-        tempList = this.state.list.slice(0, indextoDelete - 1);
+        var left = this.state.list.slice(0, indextoDelete);
         var right = this.state.list.slice(indextoDelete + 1, this.state.length);
-        tempList.concat(right);
-
+        tempList = [...left, ...right];
       }
       if (indextoDelete != this.state.length - 1) {
         for(var i = indextoDelete; i < this.state.length - 1; i++) {
@@ -281,18 +179,6 @@ class Tracker extends React.Component {
 function createItem(name, price, category, id) {
   return { name, price, category, id};
 }
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 class SimpleTable extends React.Component {
   constructor(props) {
